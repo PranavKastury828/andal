@@ -42,6 +42,12 @@ export default function Home() {
 
     </div>
 
+    <div>
+      <div className="flex justify-between items-center w-full">
+        
+      </div>
+    </div>
+
     </>
     
   );
