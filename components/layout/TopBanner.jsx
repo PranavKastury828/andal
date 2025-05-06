@@ -5,9 +5,9 @@ import Phonecall from '@public/PhoneCall.png'
 import Image from 'next/image'
 const TopBanner = () => {
     return (
-        <>
-        <div className="bg-[#1e1e1e] px-[10%] py-[2rem]">
-  <div className="flex justify-between max-w-[1340px] mx-auto align-center center-this-div">
+        <div className="bg-[#1e1e1e]">
+        <div className="bg-[#1e1e1e] px-[10%] py-[2rem] max-w-[1728px] mx-auto">
+  <div className="flex justify-between  align-center center-this-div">
     <div className="flex justify-between items-center">
       <Image
         src={CalendarHeart}
@@ -39,7 +39,7 @@ const TopBanner = () => {
   </div>
 </div>
 
-        </>
+        </div>
     )
 }
 

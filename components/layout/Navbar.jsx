@@ -21,8 +21,8 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="px-[10%] py-8">
-      <div className="max-w-[1340px] mx-auto flex flex-col items-center space-y-6">
+    <header className="px-[10%] py-8 max-w-[1728px] mx-auto">
+      <div className=" flex flex-col items-center space-y-6">
         {/* Top Icons */}
         <div className="w-full flex justify-between items-center">
           {/* Left: Search Icon */}
