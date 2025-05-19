@@ -2,14 +2,12 @@
 
 import Image from 'next/image';
 
-export default function StaticHeroBanner() {
-  const backgroundImage = '/static_banner_homepage.png'; // Make sure this is in /public
-
+export default function StaticHeroBanner({ imageSrc = '/static_banner_homepage.png' }) {
   return (
-    <div className="relative w-full h-[80vh] max-h-[576px] overflow-hidden bg-black md:mb-[120px] mb-[64px]">
+    <div className="relative w-full h-[80vh] max-h-[576px] overflow-hidden bg-black">
       {/* Background Image */}
       <Image
-        src={backgroundImage}
+        src={imageSrc}
         alt="Andal Static Hero"
         fill
         priority
@@ -22,7 +20,7 @@ export default function StaticHeroBanner() {
       {/* Content */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full max-w-6xl px-6 flex justify-between items-end z-20 flex-col sm:flex-row">
         {/* Text Section */}
-        <div className="text-white max-w-md mb-6 sm:mb-0">
+        <div className="text-white max-w-md mb-6 sm:mb-0 relative h-full">
           <h1 className="text-4xl font-bold mb-4">Discover Elegance</h1>
           <p className="text-lg">Handcrafted Jewelry for Every Love Story.</p>
         </div>

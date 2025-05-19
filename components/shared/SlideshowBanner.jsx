@@ -99,7 +99,7 @@ export default function SlideshowBanner() {
         ))}
 
         {/* Overlayed Content */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full max-w-6xl px-6 flex justify-between items-end z-20 flex-col sm:flex-row">
+        <div className="absolute bottom-0 py-20 left-1/2 transform -translate-x-1/2 w-full max-w-6xl px-6 flex justify-between items-start z-20 flex-col sm:flex-row">
           {/* Text Section */}
           <div className="text-white max-w-md mb-6 sm:mb-0">
             <h1 className="text-4xl font-bold mb-4">Discover Elegance</h1>
@@ -108,11 +108,11 @@ export default function SlideshowBanner() {
 
           {/* Buttons Section */}
           <div className="flex flex-col space-y-4 sm:space-y-4">
-            <button className="cursor-pointer px-6 py-[24px] bg-transparent border border-white text-white font-semibold flex gap-x-[30px] hover:bg-white hover:text-black transition uppercase">
+            <button className="cursor-pointer px-6 py-[24px] bg-transparent border border-white text-white font-semibold flex sm:justify-between hover:bg-white hover:text-black transition uppercase sm:w-full md:max-w-[300px]">
               Go To Collections <span className="ml-2">→</span>
             </button>
 
-            <button className="cursor-pointer px-6 py-[24px] bg-black border border-black text-white font-semibold flex gap-x-[30px] uppercase">
+            <button className="cursor-pointer px-6 py-[24px] bg-black border border-black text-white font-semibold flex gap-x-[30px] uppercase sm:w-full md:max-w-[300px]">
               Explore Campaign <span className="ml-2">→</span>
             </button>
           </div>

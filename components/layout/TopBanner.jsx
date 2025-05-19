@@ -14,7 +14,7 @@ const TopBanner = () => {
         className="pr-[16px] h-[32px] w-auto"
         alt="calendar icon"
       />
-      <h2 className="text-white text-[14px]">Book an appointment</h2>
+      <h2 className="text-white text-[14px] hidden lg:block">Book an appointment</h2>
     </div>
 
     <div className="flex justify-between items-center gap-x-[56px]">
@@ -24,16 +24,16 @@ const TopBanner = () => {
           className="pr-[16px] h-[32px] w-auto"
           alt="gps icon"
         />
-        <h2 className="text-white text-[14px]">Store Locator</h2>
+        <h2 className="text-white text-[14px] hidden lg:block">Store Locator</h2>
       </div>
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-center items-center">
         <Image
           src={Phonecall}
           className="pr-[16px] h-[32px] w-auto"
           alt="phone icon"
         />
-        <h2 className="text-white text-[14px]">Contact Us</h2>
+        <h2 className="text-white text-[14px] hidden lg:block">Contact Us</h2>
       </div>
     </div>
   </div>
