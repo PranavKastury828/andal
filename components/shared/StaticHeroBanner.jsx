@@ -28,12 +28,10 @@ export default function StaticHeroBanner({ imageSrc = '/static_banner_homepage.p
         {/* Buttons Section */}
         <div className="flex flex-col space-y-4 sm:space-y-4">
           <button className="cursor-pointer px-6 py-[24px] bg-transparent border border-white text-white font-semibold flex gap-x-[30px] hover:bg-white hover:text-black transition uppercase">
-            Go To Collections <span className="ml-2">→</span>
+            See Gifting options <span className="ml-2">→</span>
           </button>
 
-          <button className="cursor-pointer px-6 py-[24px] bg-black border border-black text-white font-semibold flex gap-x-[30px] uppercase">
-            Explore Campaign <span className="ml-2">→</span>
-          </button>
+        
         </div>
       </div>
     </div>

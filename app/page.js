@@ -1,3 +1,5 @@
+"use client"
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import TopBanner from "@components/layout/TopBanner";
 import Navbar from "@components/layout/Navbar";
@@ -27,6 +29,48 @@ export default function Home() {
     khush_ft,
     naturalDiamonds_ft,
   ];
+  const secondVideoRef = useRef(null);
+  const [videoInView, setVideoInView] = useState(false);
+
+  useEffect(() => {
+    const video = secondVideoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVideoInView(entry.intersectionRatio >= 0.3);
+      },
+      {
+        threshold: [0, 0.3, 1],
+      }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      if (video) observer.unobserve(video);
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = secondVideoRef.current;
+    if (!video) return;
+
+    if (videoInView) {
+      // Pause other videos if needed
+      document.querySelectorAll("video").forEach((v) => {
+        if (v !== video) {
+          v.pause();
+        }
+      });
+
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [videoInView]);
+
+
   return (
     <>
       <TopBanner />
@@ -36,19 +80,19 @@ export default function Home() {
       <FeaturedLogos ftImages={ftImages} />
 
       <div className="w-full px-[10%] mx-auto max-w-[1728px]">
-        <div className="flex justify-between items-center w-full mb-[2rem] md:mb-[4rem]">
+        <div className="flex justify-between items-center w-full mb-[2rem] md:mb-[4rem] gap-x-[10rem]">
           <div>
             <h2 className="text-lg uppercase text-black font-bold">
               Love Stories
             </h2>
             <p className="text-regular text-black max-w-[800px]">
-              When you choose Tiffany & Co., you become a valued member of the
-              Tiffany family. Since 1837, we’ve prided ourselves on providing
-              premium service, a tradition that continues to this day.
+              A promise of a lifetime. At Andal, we create bespoke engagemnet
+              and wedding rings for men and women. Select from an array of cuts,
+              shapes and gemstones for the ring of your dreams.
             </p>
           </div>
           <div>
-            <button className="cursor-pointer px-6 py-[36px] bg-black border border-black text-white font-semibold flex gap-x-[30px] uppercase sm:px-6 sm:py-[24px]">
+            <button className="cursor-pointer px-6 py-[36px] bg-black border border-black text-white font-semibold flex gap-x-[30px] uppercase sm:px-6 sm:py-[24px] text-nowrap">
               Book an appointment<span className="ml-2">→</span>
             </button>
           </div>
@@ -63,7 +107,7 @@ export default function Home() {
                 className="object-contain max-h-full max-w-full mb-[24px]"
               />
             </div>
-            <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full">
+            <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full text-nowrap">
               For Her <span className="ml-2">→</span>
             </button>
           </div>
@@ -76,7 +120,7 @@ export default function Home() {
                 className="object-contain max-h-full max-w-full mb-[24px]"
               />
             </div>
-            <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full">
+            <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full text-nowrap">
               For Him <span className="ml-2">→</span>
             </button>
           </div>
@@ -96,7 +140,7 @@ export default function Home() {
                 alt="For Her Ring"
                 className="object-contain max-h-full max-w-full mb-[24px]"
               />
-              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full">
+              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full text-nowrap">
                 Gemstone <span className="ml-2">→</span>
               </button>
             </div>
@@ -108,7 +152,7 @@ export default function Home() {
                 alt="For His Ring"
                 className="object-contain max-h-full max-w-full mb-[24px]"
               />
-              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full">
+              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full text-nowrap">
                 Collection <span className="ml-2">→</span>
               </button>
             </div>
@@ -120,7 +164,7 @@ export default function Home() {
                 alt="For Her Necklace"
                 className="object-contain max-h-full max-w-full mb-[24px]"
               />
-              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full">
+              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full text-nowrap">
                 Bespoke <span className="ml-2">→</span>
               </button>
             </div>
@@ -141,7 +185,7 @@ export default function Home() {
                 alt="Gemstone"
                 className="object-cover w-full h-auto mb-[24px]"
               />
-              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full whitespace-nowrap">
+              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full whitespace-nowrap text-nowrap">
                 Necklaces
               </button>
             </div>
@@ -153,7 +197,7 @@ export default function Home() {
                 alt="Collection"
                 className="object-cover w-full h-auto mb-[24px]"
               />
-              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full whitespace-nowrap">
+              <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex justify-between gap-x-[30px] hover:bg-black hover:text-white transition duration-300 uppercase sm:px-6 sm:py-[24px] w-full text-nowrap">
                 Bracelets
               </button>
             </div>
@@ -190,11 +234,13 @@ export default function Home() {
               {/* First Column: Video */}
               <div className="flex justify-center items-center">
                 <video
+                  ref={secondVideoRef}
                   className="w-full max-w-[650px] h-[725px] object-cover"
                   controls
-                  autoPlay
+                  muted
+                  playsInline
                 >
-                  <source src="/grid.mp4" type="video/mp4" />
+                  <source src="/6.1.mov" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -238,13 +284,15 @@ export default function Home() {
                       The Holiday
                     </h2>
                     <p className="text-lg mb-[24px]">
-                      Lorem ipsum dolor sit amet <br /> Lorem ipsum
+                      Discover our signature Spiral Pendants and Bracelets
                     </p>
-                    <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex gap-x-[30px] hover:bg-black hover:text-white hover:border-white transition duration-300 uppercase sm:px-6 sm:py-[24px] whitespace-nowrap w-full mb-[24px]">
+                    <button className="cursor-pointer px-6 py-[36px] bg-transparent border border-black text-black font-semibold flex gap-x-[30px] hover:bg-black hover:text-white hover:border-white transition duration-300 uppercase sm:px-6 sm:py-[24px] text-nowrap w-full mb-[24px]">
                       Shop Collection <span className="ml-2">→</span>
                     </button>
 
-                    <button className="cursor-pointer px-6 py-[36px] bg-black border border-black text-white font-semibold whitespace-nowrap flex gap-x-[30px] uppercase sm:px-6 sm:py-[24px] w-full">
+                    <button
+                      className={`cursor-pointer px-6 py-[24px] border text-white font-semibold uppercase flex items-center justify-between transition sm:w-full md:max-w-[300px] bg-black border-black text-nowrap`}
+                    >
                       Explore Campaign <span className="ml-2">→</span>
                     </button>
                   </div>
@@ -255,10 +303,10 @@ export default function Home() {
         </div>
       </div>
       <StaticHeroBanner imageSrc="/static_banner_homepage.png" />
-      <div className="w-full px-[10%] mx-auto max-w-[1728px]">
+      <div className="w-full px-[10%] mx-auto max-w-[1728px] md:mt-[120px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-[15%] w-full mb-[64px] md:mb-[120px]">
-          <div className="flex flex-col justify-between py-6">
-            <div>
+          <div className="flex flex-col justify-center py-12">
+            <div className="mb-[64px] lg:mb-[180px]">
               <h3 className="text-base text-[#b0b0b0] font-bold mb-4 uppercase">
                 about us
               </h3>
@@ -266,14 +314,16 @@ export default function Home() {
                 meet the founder
               </h2>
               <p className="text-base text-black">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                itaque molestias ut animi sint aperiam, aliquid magni non iure,
-                quibusdam necessitatibus et impedit, dignissimos repudiandae
-                quas deserunt officia distinctio explicabo quaerat assumenda
-                ratione ad. Nostrum possimus deserunt ad qui officia consequatur
-                rem dolorum eveniet dolore pariatur odit fuga explicabo,
-                molestias eaque iure, ipsum neque a? Odio tempore minus cum
-                ipsa!
+                Esshitha Guna, a second generation jeweller and lawyer, founded
+                Andal in 2022. After years of experience in Gunaas, the family's
+                diamond jewellery brand, Esshitha's formal experience with
+                gemology began in The Gemological Institute of America (GIA) in
+                New York in 2021. <br />
+                <br />
+                Named after her paternal grandmother, the ethos of Andal is
+                reflected in the confluence of impeccable natural gemstones,
+                talent from across the world and craftsmanship that speaks for
+                itself.
               </p>
             </div>
             <button className="cursor-pointer px-6 py-[36px] bg-black border border-black text-white font-semibold whitespace-nowrap gap-x-[30px] uppercase sm:px-6 sm:py-[24px] max-w-[324px] flex justify-between">
@@ -284,7 +334,7 @@ export default function Home() {
             <img
               src="/founder.png"
               alt="Founder"
-              className="object-contain max-h-full max-w-full mb-[24px]"
+              className="w-full h-auto mb-[24px] md:min-h-[724px] object-cover"
             />
           </div>
         </div>
